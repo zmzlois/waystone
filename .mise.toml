@@ -1,0 +1,33 @@
+[tools]
+node = "22"
+pnpm = "9.15.9"
+
+[tasks.install]
+description = "install dependencies"
+dir = "app"
+run = "pnpm install"
+
+[tasks.dev]
+description = "start dev server"
+dir = "app"
+run = "pnpm turbo dev"
+
+[tasks.build]
+description = "build all packages"
+dir = "app"
+run = "pnpm turbo build"
+
+[tasks.lint]
+description = "lint all packages"
+dir = "app"
+run = "pnpm turbo lint"
+
+[tasks.format]
+description = "format all packages"
+dir = "app"
+run = "pnpm turbo format"
+
+[tasks.typecheck]
+description = "typecheck all packages"
+dir = "app"
+run = "pnpm turbo typecheck"
