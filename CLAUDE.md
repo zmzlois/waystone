@@ -47,6 +47,9 @@ packages/typescript-config  → shared tsconfig presets (base, nextjs, react-lib
 - Within web app: `@/*` (e.g., `@/components/chat/layout`)
 - UI package exports are defined explicitly in `packages/ui/package.json` `exports` field
 
+### Database and schema
+Use `pascal_case` for all columns and table namings.
+
 ### Web App Structure
 
 - `app/api/chat/route.ts` — streaming chat endpoint using Vercel AI SDK + Anthropic (Claude Sonnet 4, extended thinking enabled)
