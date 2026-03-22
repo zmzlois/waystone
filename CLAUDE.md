@@ -66,3 +66,35 @@ packages/typescript-config  → shared tsconfig presets (base, nextjs, react-lib
 ### Styling
 
 Global styles live in `packages/ui/src/styles/globals.css`. The `cn()` utility from `@workspace/ui/lib/utils` merges Tailwind classes (clsx + tailwind-merge). Prettier is configured with `tailwindFunctions: ["cn", "cva"]` for class sorting.
+
+## Design Direction
+
+- **Theme**: Light mode for the app UI. Sleek, futuristic, punk aesthetic.
+- **Typography**: JetBrains Mono as the primary font.
+- **Logo**: "Waystone" rendered using the `shaders` npm package with the Chroma Chrome 1 preset from https://shaders.com/. The logo uses a Glass shader with Swirl + ChromaFlow layers and FilmGrain overlay. Reference shader config:
+  ```tsx
+  import { Shader, ChromaFlow, FilmGrain, Glass, SolidColor, Swirl } from "shaders/react"
+
+  <Shader>
+    <SolidColor color="#130f1a" visible={true} />
+    <Glass
+      cutout={true}
+      fresnel={0.04}
+      fresnelSoftness={0.05}
+      highlight={0.5}
+      highlightSoftness={0.21}
+      innerZoom={1.5}
+      lightAngle={237}
+      refraction={2}
+      shapeSdfUrl="https://data.shaders.com/storage/v1/object/public/user-uploaded-images/user_33nh0FG48zZa0rIUZuK7vgwPfZe/Fo7ahNLZwqrY_sdf.bin"
+      shapeType="svg"
+      thickness={1}
+    >
+      <Swirl colorA="#26262b" colorB="#0d111a" detail={5} speed={0.2} />
+      <ChromaFlow momentum={10} radius={2} />
+    </Glass>
+    <FilmGrain opacity={0.1} />
+  </Shader>
+  ```
+- **Background**: Also use shaders for ambient background effects — keep them subtle so they don't compete with content.
+- **Color palette**: Deep darks (#130f1a, #0d111a, #26262b), chromatic accents from the shader's iridescent highlights.

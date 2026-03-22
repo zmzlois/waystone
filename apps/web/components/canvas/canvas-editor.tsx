@@ -1,11 +1,16 @@
 "use client"
 
+import { useEffect } from "react"
 import { useEditor, EditorContent } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
 import Placeholder from "@tiptap/extension-placeholder"
+import { useCanvas } from "./canvas-context"
 
 export function CanvasEditor() {
+  const { content } = useCanvas()
+
   const editor = useEditor({
+    immediatelyRender: false,
     extensions: [
       StarterKit,
       Placeholder.configure({
@@ -19,6 +24,13 @@ export function CanvasEditor() {
       },
     },
   })
+
+  // sync canvas context content into the editor
+  useEffect(() => {
+    if (editor && content) {
+      editor.commands.setContent(content)
+    }
+  }, [editor, content])
 
   return <EditorContent editor={editor} className="h-full" />
 }

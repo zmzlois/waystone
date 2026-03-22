@@ -2,6 +2,7 @@
 
 import type { UIMessage } from "ai"
 import { ThinkingBlock } from "./thinking-block"
+import { Markdown } from "./markdown"
 
 interface ChatMessageProps {
   message: UIMessage
@@ -24,16 +25,17 @@ export function ChatMessage({ message }: ChatMessageProps) {
       >
         {message.parts.map((part, i) => {
           if (part.type === "reasoning") {
-            return (
-              <ThinkingBlock key={i} reasoning={part.text} />
-            )
+            return <ThinkingBlock key={i} reasoning={part.text} />
           }
           if (part.type === "text") {
-            return (
-              <span key={i} className="whitespace-pre-wrap">
-                {part.text}
-              </span>
-            )
+            if (isUser) {
+              return (
+                <span key={i} className="whitespace-pre-wrap">
+                  {part.text}
+                </span>
+              )
+            }
+            return <Markdown key={i} content={part.text} />
           }
           return null
         })}
