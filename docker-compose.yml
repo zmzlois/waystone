@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: waystone-db
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: waystone
+      POSTGRES_PASSWORD: waystone
+      POSTGRES_DB: waystone
+    volumes:
+      - waystone_pgdata:/var/lib/postgresql/data
+
+volumes:
+  waystone_pgdata:

@@ -127,3 +127,12 @@
     @apply bg-background text-foreground;
     }
 }
+
+/* tiptap placeholder styling */
+.tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: var(--muted-foreground);
+  pointer-events: none;
+  height: 0;
+}
